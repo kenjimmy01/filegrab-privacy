@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filegrab プライバシーポリシー / Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 720px; margin: 0 auto; padding: 24px 18px 64px;
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; color: #1b1c20; background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #ececE6; background: #16171a; }
+    a { color: #e4b27b; }
+    hr { border-color: #33363c; }
+    .muted { color: #a6a49d; }
+  }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  h3 { font-size: 1rem; margin: 18px 0 4px; }
+  p, li { font-size: 0.98rem; }
+  ul { padding-left: 1.2em; }
+  .muted { color: #6b6b6b; font-size: 0.9rem; }
+  hr { border: none; border-top: 1px solid #e2e2e2; margin: 40px 0; }
+  a { color: #b5731f; }
+  .lang { margin-bottom: 24px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e2e2e2; font-size: 0.94rem; vertical-align: top; }
+  th { font-weight: 600; }
+  @media (prefers-color-scheme: dark) { th, td { border-color: #33363c; } }
+</style>
+</head>
+<body>
+
+<h1 id="top">Filegrab プライバシーポリシー</h1>
+<p class="muted">最終更新日：2026年11月8日 ｜ <a href="#en">English</a></p>
+
+<h2>結論</h2>
+<p><strong>Filegrab は、利用者の情報を一切収集しません。送信もしません。</strong></p>
+<p>このアプリは通信機能を持ちません。<code>INTERNET</code> 権限を要求しておらず、
+取り込んだライブラリが要求してきた場合も、マニフェストで明示的に取り除いています。</p>
+
+<h2>収集する情報</h2>
+<p>ありません。</p>
+<ul>
+  <li>個人を識別する情報を集めません</li>
+  <li>利用状況・操作ログを集めません</li>
+  <li>広告を表示しません。広告識別子も使いません</li>
+  <li>クラッシュレポートを送信しません</li>
+  <li>アクセス解析を行いません</li>
+</ul>
+
+<h2>ファイルの扱い</h2>
+<p>Filegrab は「すべてのファイルへのアクセス」（<code>MANAGE_EXTERNAL_STORAGE</code>）を要求します。
+これは端末内のファイルを一覧・検索・整理するという、このアプリの中核機能のために必要です。</p>
+<p><strong>読み取ったファイルの内容が端末の外に出ることはありません。</strong></p>
+
+<h3>端末内に保存されるもの</h3>
+<table>
+  <tr><th>保存するもの</th><th>置き場所</th><th>何のためか</th></tr>
+  <tr><td>ファイル名・サイズ・更新日時の索引</td><td>アプリ内部のデータベース</td><td>検索を速くするため</td></tr>
+  <tr><td>フォルダごとの並び順・絞り込み</td><td>アプリ内部のデータベース</td><td>前回の表示を覚えるため</td></tr>
+  <tr><td>最近開いたファイルの記録</td><td>アプリ内部のデータベース</td><td>「最近」の一覧のため</td></tr>
+  <tr><td>保存した検索条件</td><td>アプリ内部のデータベース</td><td>条件の呼び出しのため</td></tr>
+  <tr><td>削除したファイル</td><td>各ストレージの <code>.Trash</code> フォルダ</td><td>ゴミ箱から戻せるようにするため</td></tr>
+</table>
+<p>いずれも端末の中だけに留まります。アプリを削除すれば、索引や記録も一緒に消えます。</p>
+
+<h2>権限について</h2>
+<table>
+  <tr><th>権限</th><th>何に使うか</th></tr>
+  <tr><td>すべてのファイルへのアクセス<br><code>MANAGE_EXTERNAL_STORAGE</code></td><td>端末内のファイルを一覧・検索・整理するため。このアプリの中核機能</td></tr>
+  <tr><td>通知<br><code>POST_NOTIFICATIONS</code></td><td>複製・移動・削除の進み具合を出すため</td></tr>
+  <tr><td>前景サービス<br><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_DATA_SYNC</code></td><td>大きなファイルの複製・移動を、画面を離れても止めないため</td></tr>
+  <tr><td>不明なアプリのインストール<br><code>REQUEST_INSTALL_PACKAGES</code></td><td>利用者が一覧から APK を選んで開いたときに、OS の導入画面へ渡すため</td></tr>
+</table>
+<p><code>INTERNET</code> 権限は<strong>要求していません</strong>。</p>
+
+<h2>他のアプリへの受け渡し</h2>
+<p>「共有」「他アプリで開く」「編集するアプリで開く」を選んだときだけ、
+選ばれた<strong>そのファイル</strong>が、利用者が選んだアプリへ渡されます。</p>
+<ul>
+  <li>渡すのは利用者が選んだ1件（または選択した複数件）だけです</li>
+  <li>渡し先は利用者が選びます。アプリが勝手に決めることはありません</li>
+  <li>渡したあとそのファイルがどう扱われるかは、渡し先のアプリのプライバシーポリシーに従います</li>
+</ul>
+
+<h2>購入について</h2>
+<p>Filegrab 本体にアプリ内課金はありません。有料機能は、別のアプリ
+「Filegrab 鍵」を購入して入れることで開きます。</p>
+<ul>
+  <li>支払いは <strong>Google Play</strong> がすべて処理します。開発者が支払い情報を受け取ることも、見ることも、保存することもありません</li>
+  <li>Filegrab は「鍵アプリが入っているか」だけを端末内で確認します。この確認でも通信は行いません</li>
+</ul>
+
+<h2>子どもの利用について</h2>
+<p>このアプリは子ども向けに設計されていません。年齢に関する情報も収集しません。</p>
+
+<h2>ポリシーの変更</h2>
+<p>変更する場合は、この文書を更新し、最終更新日を改めます。</p>
+
+<h2>お問い合わせ</h2>
+<p>本アプリやプライバシーに関するご質問は、次の連絡先までお願いします。<br>
+<a href="mailto:kenjimmy01@gmail.com">kenjimmy01@gmail.com</a></p>
+
+<hr>
+
+<h1 id="en">Filegrab Privacy Policy</h1>
+<p class="muted">Last updated: November 8, 2026 ｜ <a href="#top">日本語</a></p>
+
+<h2>In short</h2>
+<p><strong>Filegrab collects nothing and sends nothing.</strong></p>
+<p>The app has no networking at all. It does not request the <code>INTERNET</code>
+permission, and where a bundled library asks for one, it is explicitly removed in the manifest.</p>
+
+<h2>Information we collect</h2>
+<p>None.</p>
+<ul>
+  <li>No personally identifying information</li>
+  <li>No usage or behaviour logs</li>
+  <li>No ads, and no advertising identifier</li>
+  <li>No crash reporting</li>
+  <li>No analytics</li>
+</ul>
+
+<h2>How your files are handled</h2>
+<p>Filegrab requests "All files access" (<code>MANAGE_EXTERNAL_STORAGE</code>). This is
+required for the app's core purpose: listing, searching and organising the files on your device.</p>
+<p><strong>Nothing the app reads ever leaves your device.</strong></p>
+
+<h3>Stored on your device</h3>
+<table>
+  <tr><th>What</th><th>Where</th><th>Why</th></tr>
+  <tr><td>An index of file names, sizes and dates</td><td>The app's private database</td><td>To make search fast</td></tr>
+  <tr><td>Sort order and filters per folder</td><td>The app's private database</td><td>To remember your last view</td></tr>
+  <tr><td>Recently opened files</td><td>The app's private database</td><td>For the "Recent" list</td></tr>
+  <tr><td>Saved search conditions</td><td>The app's private database</td><td>So you can recall them</td></tr>
+  <tr><td>Deleted files</td><td>A <code>.Trash</code> folder on each volume</td><td>So they can be restored</td></tr>
+</table>
+<p>All of it stays on the device. Uninstalling the app removes the index and the records with it.</p>
+
+<h2>Permissions</h2>
+<table>
+  <tr><th>Permission</th><th>What it is for</th></tr>
+  <tr><td>All files access<br><code>MANAGE_EXTERNAL_STORAGE</code></td><td>Listing, searching and organising files on the device. The core of the app</td></tr>
+  <tr><td>Notifications<br><code>POST_NOTIFICATIONS</code></td><td>Showing the progress of a copy, move or delete</td></tr>
+  <tr><td>Foreground service<br><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_DATA_SYNC</code></td><td>Keeping a large copy or move running when you leave the screen</td></tr>
+  <tr><td>Install unknown apps<br><code>REQUEST_INSTALL_PACKAGES</code></td><td>Handing an APK you chose to the system installer</td></tr>
+</table>
+<p>The <code>INTERNET</code> permission is <strong>not requested</strong>.</p>
+
+<h2>Handing files to other apps</h2>
+<p>Only when you choose "Share", "Open with" or "Edit with" is the selected file handed
+to an app you picked.</p>
+<ul>
+  <li>Only the item (or items) you selected are handed over</li>
+  <li>You choose the destination. The app never decides it for you</li>
+  <li>What happens to the file afterwards is governed by that app's own privacy policy</li>
+</ul>
+
+<h2>Purchases</h2>
+<p>Filegrab itself has no in-app billing. Paid features are unlocked by buying and
+installing a separate app, "Filegrab Key".</p>
+<ul>
+  <li>Payment is handled entirely by <strong>Google Play</strong>. The developer does not receive, see or store your payment details</li>
+  <li>Filegrab only checks, on the device, whether the key app is installed. That check uses no network either</li>
+</ul>
+
+<h2>Children's privacy</h2>
+<p>This app is not designed for children, and it collects no information about age.</p>
+
+<h2>Changes to this policy</h2>
+<p>If it changes, this document is updated and the date above is revised.</p>
+
+<h2>Contact</h2>
+<p>For questions about the app or this policy, please contact:<br>
+<a href="mailto:kenjimmy01@gmail.com">kenjimmy01@gmail.com</a></p>
+
+</body>
+</html>
