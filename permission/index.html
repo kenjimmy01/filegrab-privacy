@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filegrab — All files access demonstration</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 720px; margin: 0 auto; padding: 24px 18px 64px;
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; color: #1b1c20; background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #ececE6; background: #16171a; }
+    a { color: #e4b27b; }
+    hr { border-color: #33363c; }
+    .muted { color: #a6a49d; }
+    th, td { border-color: #33363c; }
+  }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  p, li { font-size: 0.98rem; }
+  ul { padding-left: 1.2em; }
+  .muted { color: #6b6b6b; font-size: 0.9rem; }
+  hr { border: none; border-top: 1px solid #e2e2e2; margin: 40px 0; }
+  a { color: #b5731f; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e2e2e2; font-size: 0.94rem; vertical-align: top; }
+  th { font-weight: 600; }
+  video { width: 100%; max-width: 360px; height: auto; display: block; margin: 16px auto 8px; border-radius: 10px; background: #000; }
+</style>
+</head>
+<body>
+
+<h1 id="top">Filegrab — All files access</h1>
+<p class="muted">Permission declaration support page for <code>MANAGE_EXTERNAL_STORAGE</code> ｜ <a href="#ja">日本語</a> ｜ <a href="../">Privacy Policy</a></p>
+
+<p>App: <strong>Filegrab</strong> (<code>com.kmate.filegrab</code>) — an offline file manager for Android.</p>
+
+<h2>Why the app needs All files access</h2>
+<p>The core feature of Filegrab is <strong>searching the whole device</strong> for files: by name, format, date, size, and by text inside documents. A file manager has to reach files the user did not pre-select.</p>
+<p>The Storage Access Framework cannot provide this:</p>
+<ul>
+  <li>SAF has no device-wide search across folders. Device-wide search is this app's core feature.</li>
+  <li>SAF requires the user to pick a folder before anything can be shown, so the app is not usable right after launch.</li>
+  <li>Recursive traversal through SAF is orders of magnitude slower than real paths, and cannot meet this app's speed requirement.</li>
+</ul>
+<p>File contents are never sent anywhere. The app does not hold the <code>INTERNET</code> permission and has no networking code at all.</p>
+
+<h2>Demonstration video</h2>
+<video controls playsinline preload="metadata" src="filegrab-permission.mp4"></video>
+<p class="muted" style="text-align:center">16 seconds, no audio. Direct link: <a href="filegrab-permission.mp4">filegrab-permission.mp4</a></p>
+
+<table>
+  <tr><th>Step</th><th>What it shows</th></tr>
+  <tr><td>1</td><td>The search screen; the scope is set to <strong>Whole device</strong>.</td></tr>
+  <tr><td>2</td><td>The keyword <code>lumen</code> is typed.</td></tr>
+  <tr><td>3</td><td><strong>7 results from 5 different top-level folders</strong> appear at once — /Documents, /Download, /Movies, /Pictures, /Music.</td></tr>
+  <tr><td>4</td><td>One result is opened and read in the app.</td></tr>
+</table>
+<p>Step 3 is the point: these files live in separate folders the user never selected in advance. Without All files access the app can only return results from one picked folder at a time, which is not a file manager.</p>
+<p class="muted">The files shown (<code>lumen-*</code>) are demonstration files created for this recording. A system autofill bar from the keyboard appears briefly near the start of the clip; it is part of the OS, not the app.</p>
+
+<hr>
+
+<h1 id="ja">Filegrab — 全ファイルアクセス</h1>
+<p class="muted"><code>MANAGE_EXTERNAL_STORAGE</code> の申告に添える説明 ｜ <a href="#top">English</a></p>
+
+<h2>この権限が必要な理由</h2>
+<p>Filegrab の中核機能は、端末内のファイルの<strong>横断検索</strong>（名前・形式・日付・サイズ・文書内の文字）です。ファイルマネージャーである以上、ユーザーがあらかじめ選んだフォルダの外にも届く必要があります。</p>
+<ul>
+  <li>SAF では端末全体を対象とした横断検索ができません。横断検索はこのアプリの中核です</li>
+  <li>SAF はフォルダを先に選ばせる作りで、起動してすぐ使えません</li>
+  <li>SAF 経由の再帰的な走査は実パスに比べて桁違いに遅く、速度の要件を満たせません</li>
+</ul>
+<p>ファイルの内容を外部に送ることはありません。<code>INTERNET</code> 権限を持たず、通信する仕組み自体がありません。</p>
+
+<h2>動画の中身</h2>
+<p>16 秒・無音。検索範囲を「端末全体」にして <code>lumen</code> と打つと、<strong>/Documents・/Download・/Movies・/Pictures・/Music の 5 か所から 7 件</strong>が一度に出ます。選んだフォルダひとつでは足りないことが、この一画面で分かります。映っているファイルは、この録画のために置いた見せファイルです。</p>
+
+</body>
+</html>
