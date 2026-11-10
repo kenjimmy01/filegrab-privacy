@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filegrab — Request install packages</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 720px; margin: 0 auto; padding: 24px 18px 64px;
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; color: #1b1c20; background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #ececE6; background: #16171a; }
+    a { color: #e4b27b; }
+    hr { border-color: #33363c; }
+    .muted { color: #a6a49d; }
+    th, td { border-color: #33363c; }
+  }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  p, li { font-size: 0.98rem; }
+  ul { padding-left: 1.2em; }
+  .muted { color: #6b6b6b; font-size: 0.9rem; }
+  hr { border: none; border-top: 1px solid #e2e2e2; margin: 40px 0; }
+  a { color: #b5731f; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e2e2e2; font-size: 0.94rem; vertical-align: top; }
+  th { font-weight: 600; }
+  video { width: 100%; max-width: 360px; height: auto; display: block; margin: 16px auto 8px; border-radius: 10px; background: #000; }
+</style>
+</head>
+<body>
+
+<h1 id="top">Filegrab — Request install packages</h1>
+<p class="muted">Permission declaration support page for <code>REQUEST_INSTALL_PACKAGES</code> ｜ <a href="#ja">日本語</a> ｜ <a href="../">All files access</a> ｜ <a href="../../">Privacy Policy</a></p>
+
+<p>App: <strong>Filegrab</strong> (<code>com.kmate.filegrab</code>) — an offline file manager for Android.</p>
+
+<h2>Why the app needs this permission</h2>
+<p>An APK is an ordinary file sitting in the user's storage, and opening files is what a file manager is for. When the user taps an APK, Filegrab hands it to the Android package installer.</p>
+<p>Without <code>REQUEST_INSTALL_PACKAGES</code>, <strong>nothing happens at all</strong>: Android drops the request without an error, so to the user that one file type simply looks broken in an app whose whole job is opening files.</p>
+
+<h2>What the app does not do</h2>
+<ul>
+  <li><strong>It never installs anything itself, and never silently.</strong> It only passes the file to the system installer, which asks the user every single time.</li>
+  <li><strong>It cannot download an APK.</strong> The app has no <code>INTERNET</code> permission and no networking code, so the only APKs it can open are files already on the device.</li>
+  <li>It does not sideload, update or replace apps in the background, and has no app store or distribution feature of any kind.</li>
+</ul>
+
+<h2>Demonstration video</h2>
+<video controls playsinline preload="metadata" src="filegrab-install.mp4"></video>
+<p class="muted" style="text-align:center">14 seconds, no audio. Direct link: <a href="filegrab-install.mp4">filegrab-install.mp4</a></p>
+
+<table>
+  <tr><th>Step</th><th>What it shows</th></tr>
+  <tr><td>1</td><td>Internal storage → a folder holding one APK file.</td></tr>
+  <tr><td>2</td><td>The user taps <code>lumen-app.apk</code>. Filegrab shows what the file is — type, extension, MIME type, size, dates, path.</td></tr>
+  <tr><td>3</td><td>The user taps <strong>Open with another app</strong>, and the system chooser offers the package installer.</td></tr>
+  <tr><td>4</td><td><strong>Android takes over.</strong> On this device Filegrab has not been granted "install unknown apps", so the system shows its own screen naming Filegrab and refuses until the user allows it in Settings.</td></tr>
+</table>
+<p>Step 4 is the honest end of the flow: the permission only lets the app <em>ask</em>. The decision stays with Android and the user, and the app cannot bypass that screen.</p>
+<p class="muted">The APK in the clip (<code>lumen-app.apk</code>) is a build of this developer's own companion app, placed in a demonstration folder for this recording.</p>
+
+<hr>
+
+<h1 id="ja">Filegrab — APK を OS の導入画面へ渡す</h1>
+<p class="muted"><code>REQUEST_INSTALL_PACKAGES</code> の申告に添える説明 ｜ <a href="#top">English</a> ｜ <a href="../">全ファイルアクセス</a></p>
+
+<h2>この権限が必要な理由</h2>
+<p>APK は端末の中にある普通のファイルで、ファイルを開くのがこのアプリの仕事です。押されたら、Android の導入画面へ渡します。</p>
+<p>この宣言が無いと、<strong>押しても何も起きません</strong>。OS はエラーも返さずに黙って弾くので、使う人からは「この形式だけ壊れている」ように見えます。</p>
+
+<h2>やらないこと</h2>
+<ul>
+  <li><strong>自分では入れません。黙って入れることもありません。</strong> OS の導入画面に渡すだけで、入れるかどうかは毎回その画面で人が決めます</li>
+  <li><strong>APK を落としてくることはできません。</strong> <code>INTERNET</code> 権限を持たず通信の仕組みが無いので、開けるのは端末にすでにあるファイルだけです</li>
+  <li>裏でアプリを入れ替えることはせず、ストアや配布の機能も持ちません</li>
+</ul>
+
+<h2>動画の中身</h2>
+<p>14 秒・無音。内部ストレージ → フォルダ → <code>lumen-app.apk</code> を押す → 素性（種類・MIME・サイズ・パス）が出る → 「他アプリで開く」→ OS の選択画面 → <strong>パッケージ インストーラ</strong>。この端末では「不明なアプリのインストール」を許可していないので、最後に OS 自身の画面が出て Filegrab の名前を挙げ、設定で許可するまで進みません。<strong>この権限でできるのは「頼む」ところまで</strong>で、決めるのは OS と使う人です。</p>
+
+</body>
+</html>
