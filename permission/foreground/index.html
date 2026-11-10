@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filegrab — Foreground service (data sync)</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 720px; margin: 0 auto; padding: 24px 18px 64px;
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; color: #1b1c20; background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #ececE6; background: #16171a; }
+    a { color: #e4b27b; }
+    hr { border-color: #33363c; }
+    .muted { color: #a6a49d; }
+    th, td { border-color: #33363c; }
+  }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  p, li { font-size: 0.98rem; }
+  ul { padding-left: 1.2em; }
+  .muted { color: #6b6b6b; font-size: 0.9rem; }
+  hr { border: none; border-top: 1px solid #e2e2e2; margin: 40px 0; }
+  a { color: #b5731f; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e2e2e2; font-size: 0.94rem; vertical-align: top; }
+  th { font-weight: 600; }
+  video { width: 100%; max-width: 360px; height: auto; display: block; margin: 16px auto 8px; border-radius: 10px; background: #000; }
+</style>
+</head>
+<body>
+
+<h1 id="top">Filegrab — Foreground service</h1>
+<p class="muted">Permission declaration support page for <code>FOREGROUND_SERVICE_DATA_SYNC</code> ｜ <a href="#ja">日本語</a> ｜ <a href="../">All files access</a> ｜ <a href="../install/">Request install packages</a> ｜ <a href="../../">Privacy Policy</a></p>
+
+<p>App: <strong>Filegrab</strong> (<code>com.kmate.filegrab</code>) — an offline file manager for Android.</p>
+<p>Declared task type: <strong>local processing — other</strong>.</p>
+
+<h2>What the service does</h2>
+<p>Copying, moving, deleting and bulk-renaming files inside the user's own storage. The user starts the operation explicitly, sees a progress bar with a running count while it works, and is told when it finishes.</p>
+<p>The foreground service exists so that a transfer the user has started is not killed halfway through when they leave the screen. A file operation that stops silently in the middle leaves the user with a partly copied folder and no way to know which files made it.</p>
+
+<h2>What it is not</h2>
+<ul>
+  <li><strong>No network of any kind.</strong> The app has no <code>INTERNET</code> permission and no networking code, so this is never a background upload, download or sync with a server.</li>
+  <li><strong>Not periodic or automatic.</strong> The service runs only while an operation the user started is still running, and stops as soon as it is done.</li>
+  <li>Nothing is collected, and nothing leaves the device.</li>
+</ul>
+
+<h2>Demonstration video</h2>
+<video controls playsinline preload="metadata" src="filegrab-fgs.mp4"></video>
+<p class="muted" style="text-align:center">36 seconds, no audio. Direct link: <a href="filegrab-fgs.mp4">filegrab-fgs.mp4</a></p>
+
+<table>
+  <tr><th>Step</th><th>What it shows</th></tr>
+  <tr><td>1</td><td>A folder of 3,000 files. The user long-presses one file and taps <strong>Select all</strong> — the title shows "3000件を選択" (3,000 selected).</td></tr>
+  <tr><td>2</td><td>The user taps <strong>Duplicate</strong>, then <strong>Paste here</strong>. The operation starts and a progress bar appears: "複製中 117 / 3000" (copying 117 of 3,000).</td></tr>
+  <tr><td>3</td><td>The user leaves the app — Android's Settings app comes to the foreground. Filegrab is now in the background.</td></tr>
+  <tr><td>4</td><td>Back in Filegrab, the same operation is still running and has advanced on its own: "複製中 1346 / 3000", with the newly copied files visible in the list.</td></tr>
+</table>
+<p>Step 4 is the point: the work the user asked for survived leaving the app. Android's own ongoing notification for this service is not shown in the clip, only because the device's notification shade also holds the owner's private notifications.</p>
+
+<hr>
+
+<h1 id="ja">Filegrab — 前景サービス</h1>
+<p class="muted"><code>FOREGROUND_SERVICE_DATA_SYNC</code> の申告に添える説明 ｜ <a href="#top">English</a> ｜ <a href="../">全ファイルアクセス</a> ｜ <a href="../install/">APK を渡す</a></p>
+
+<h2>何をしているか</h2>
+<p>端末の中のファイルの複製・移動・削除・一括リネームです。始めるのは使う人で、進み具合は件数つきの帯で見え、終わったら知らせます。申告したタスクの種類は<strong>ローカル処理（その他）</strong>です。</p>
+<p>前景サービスにしているのは、<strong>始めた移動が途中で黙って止まらないようにする</strong>ためです。途中で切られると、どこまで移ったのか分からないフォルダだけが残ります。</p>
+
+<h2>やらないこと</h2>
+<ul>
+  <li><strong>通信は一切ありません。</strong> <code>INTERNET</code> 権限を持たず、通信の仕組みもないので、裏で送る・受け取る・同期することはありません</li>
+  <li><strong>定期実行もしません。</strong> 使う人が始めた作業が続いている間だけ動き、終われば止まります</li>
+  <li>集めるものはなく、端末の外へ出るものもありません</li>
+</ul>
+
+<h2>動画の中身</h2>
+<p>36 秒・無音。3,000 個のファイルがあるフォルダで長押し →「すべて選択」→ 複製 →「ここに置く」→「複製中 117 / 3000」。そのまま設定アプリへ切り替えて Filegrab を裏に回し、戻ると<strong>「複製中 1346 / 3000」まで独りで進んでいます</strong>。常駐通知そのものを映していないのは、この端末の通知領域に持ち主個人の通知が並んでいるためです。</p>
+
+</body>
+</html>
